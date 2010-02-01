@@ -1,0 +1,10 @@
+.miko_block {
+	border: 1px dashed #000080;
+	padding: 2px 3px;
+}
+
+.miko_solid { border-color: #6F6 !important; }
+
+.miko_block:hover { border-style: solid; cursor: text; }
+
+#miko_editor { display: none; }

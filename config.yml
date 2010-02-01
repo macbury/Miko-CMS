@@ -1,0 +1,6 @@
+admin:
+  login: miko
+  password: admin
+  
+site:
+  title: "Miko CMS"
