@@ -1,0 +1,65 @@
+Features
+	
+	Simple CMS based on sinatra
+	No DB need(everything is stored as text files in content directory )
+	Minimal configuration
+	TinyMce WYSIWYG editor
+	
+Installation
+
+	git clone git@github.com:macbury/Miko-CMS.git
+	
+Configuration 
+	
+	1.) Set admin login and password in config.yml
+	2.) Copy your assets to assets directory
+	3.) Edit template.erb
+	
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" href="/simple.css" type="text/css" />
+		<title>Miko CMS</title>
+		<!-- This will include miko cms assets -->
+		<%= head %>
+	</head>
+	<body>
+		<div class="wrapper">
+			<header>
+				<h1>Miko CMS</h1>
+			</header>
+			<nav>
+				<ul>
+					<li><a href="/">Page 1</a></li>
+					<li><a href="/page/2">Page 2</a></li>
+					<li><a href="/page/3">Page 3</a></li>
+				</ul>
+			</nav>
+
+			<section>
+				<article>
+					<!-- This will create content that will depend on what page you are -->
+					<%= content :body %>
+				</article>
+			</section>
+
+			<footer>
+				<!-- This will create solid box that will be the same for all pages -->
+				<%= content :about, true %>
+			</footer>
+		</div>
+	</body>
+	</html>
+
+Editing content
+	
+	1.) Start sinatra web application( ruby app.rb )
+	2.) Go to http://www.your-website.com/login
+	3.) Click on bordered boxes to edit
+	4.) To create new page enter it name in adress bar( ex. http://www.your-website.com/my-new-page or http://www.your-website.com/My new page )
+	5.) After editing logout( http://www.your-website.com/logout )
+	
+Author
+	
+	Buras Arkadiusz 2010
+	http://macbury.jogger.pl

@@ -1,8 +1,16 @@
 require "iconv"
 
-get '/editor' do
-	authorize!
-	erb :editor
+post '/*' do
+	@dir = File.join([content_path, content_url])
+	@static_dir = static_content_path
+	
+	file_name = params[:solid] == "true" ? File.join([@static_dir, "#{params[:block]}.html"]) : File.join([@dir, "#{params[:block]}.html"])
+	
+	f = File.exist?(file_name) ? File.open(file_name, 'w') : File.new(file_name, 'w')
+	f.write params[:content]
+	f.close
+	
+	redirect '/'+content_url, 303
 end
 
 get '/*' do
@@ -19,10 +27,6 @@ get '/*' do
 	end
 	
   erb :template
-end
-
-post '/*' do
-	
 end
 
 helpers do
@@ -47,7 +51,8 @@ helpers do
     result.downcase!
     result.size.zero? ? nil : result
   end
-
+	
+	# Insert content block
 	def content(name, solid=false)
 		name = name.class == Symbol ? name.to_s : name
 		name = escape(name)
@@ -57,7 +62,9 @@ helpers do
 		if authorized?
 			out += '<div class="miko_block'
 			out += " miko_solid" if solid
-			out += '" rel="'+name+'">'
+			out += '" rel="'+name+'"'
+			out += ' solid="true"' if solid
+			out += '>'
 		end 
 		
 		content = ""
@@ -71,7 +78,7 @@ helpers do
 		content = "Click to enter text..." if content.empty?
 		
 		out += content
-		out += '</div>'
+		out += '</div>' if authorized?
 		out
 	end
 end

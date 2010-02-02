@@ -1,43 +1,35 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="author" content="Luka Cvrk (www.solucija.com)" />
 	<link rel="stylesheet" href="/simple.css" type="text/css" />
+	<title>Miko CMS</title>
+	<!-- This will include miko cms assets -->
 	<%= head %>
 </head>
 <body>
-	<div id="content">
-		<h1>Miko CMS</h1>
+	<div class="wrapper">
+		<header>
+			<h1>Miko CMS</h1>
+		</header>
+		<nav>
+			<ul>
+				<li><a href="/">Page 1</a></li>
+				<li><a href="/page/2">Page 2</a></li>
+				<li><a href="/page/3">Page 3</a></li>
+			</ul>
+		</nav>
 		
-		<ul id="menu">
-			<li><a href="/">home</a></li>
-			<li><a href="/archive">archive</a></li>
-			<li><a href="/contect">contact</a></li>
-		</ul>
-	
-		<div class="post">
-			<div class="details">
-				<h2><%= content :title %></h2>
-			</div>
-			<div class="body">
+		<section>
+			<article>
+				<!-- This will create content that will depend on page -->
 				<%= content :body %>
-			</div>
-			<div class="x"></div>
-		</div>
+			</article>
+		</section>
 		
-		<div class="col">
-			<%= content :column1, true %>
-		</div>
-		<div class="col">
-			<%= content :column1, true %>
-		</div>
-		<div class="col last">
-			<%= content :column1, true %>
-		</div>
-		
-		<div id="footer">
-			<p>Copyright &copy; <em>Miko CMS</em> &middot; Design: Luka Cvrk, <a href="http://www.solucija.com/" title="Free CSS Templates">Solucija</a></p>
-		</div>	
+		<footer>
+			<!-- This will create solid content box that will be the same on all pages -->
+			<%= content :about, true %>
+		</footer>
 	</div>
 </body>
 </html>

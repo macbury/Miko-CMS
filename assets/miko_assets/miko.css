@@ -4,7 +4,11 @@
 }
 
 .miko_solid { border-color: #6F6 !important; }
-
+.miko_reset {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
 .miko_block:hover { border-style: solid; cursor: text; }
 
 .miko_document {
