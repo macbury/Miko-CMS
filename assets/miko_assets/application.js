@@ -1,32 +1,24 @@
 $(document).ready(function () {
-	$('body').append('<div id="miko_editor"></div>');
-	
-	$('#miko_editor').append('<textarea id="miko_html_editor" cols="80" rows="20">');
-	
-	$('#miko_editor').dialog({
-		title: "Edit Block",
-		bgiframe: true,
-		modal: true,
-		autoOpen: false,
-		width: 720,
-		height: 450,
-		resizable: false,
-		buttons: {
-			Save: function() {
-				$(this).dialog('close');
-				$.ajax();
-			},
-			Cancel: function() {
-				$(this).dialog('close');
-			}
-		}
-	});
-	
-	
 	$('.miko_block').click(function () {
-		$('#miko_html_editor').val($(this).html());
-		$('#miko_editor').dialog('open');
+		var block = $(this);
+		content = block.html();
+		block.empty().append('<textarea>').val(content);
+		
+		$('textarea', block).val(content);
+		$('textarea', block).ckeditor(function() {}, { 
+			skin : 'v2',
+			toolbar : [
+			    ['Source','-','Save', '-', 'Cut','Copy','Paste','PasteText','PasteFromWord'],
+			    ['Bold','Italic','Underline','Strike','-','Subscript','Superscript'],
+			    ['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
+			    ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+			    ['Link','Unlink','Anchor'],
+			    ['Image','Flash','Table','HorizontalRule','SpecialChar','PageBreak'],
+			    '/',
+			    ['Styles','Format','Font','FontSize'],
+			    ['TextColor','BGColor']
+			],
+		});
+		
 	});
-	
-	$('#miko_html_editor').markItUp(mySettings);
 });

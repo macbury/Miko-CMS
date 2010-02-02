@@ -1,5 +1,10 @@
 require "iconv"
 
+get '/editor' do
+	authorize!
+	erb :editor
+end
+
 get '/*' do
 	@dir = File.join([content_path, content_url])
 	@static_dir = static_content_path
